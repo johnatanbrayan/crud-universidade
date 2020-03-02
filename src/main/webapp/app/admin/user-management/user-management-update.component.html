@@ -1,0 +1,311 @@
+<div class="card shadow-lg">
+    <div class="card-header">
+        <h2 id="myUserLabel">
+            Crie ou Edite um Usuário
+        </h2>
+    </div>
+    <div class="card-body">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Dados Pessoais</b>
+                            </div>
+                            <div class="card-body">
+                                <jhi-alert-error></jhi-alert-error>
+
+                                <!--<div class="form-group" [hidden]="!user.id">-->
+                                    <!--<label>ID</label>-->
+                                    <!--<input type="text" class="form-control" name="id"-->
+                                           <!--[(ngModel)]="user.id" readonly>-->
+                                <!--</div>-->
+
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label class="form-control-label">Nome Completo</label>
+                                        <input type="text" class="form-control" name="firstName" #nomeInput="ngModel"
+                                               [(ngModel)]="user.nome" maxlength="50" required>
+
+                                        <div *ngIf="nomeInput.dirty && nomeInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="nomeInput.errors.maxlength">
+                                                This field cannot be longer than 50 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                        <!--Configuração CPF-->
+                                    <div class="form-group col-sm-4">
+                                        <label class="form-control-label">CPF</label>
+                                        <input type="text" class="form-control" name="cpf" id="cpf"
+                                               [textMask]="maskCpf"
+                                               required
+                                               pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}"
+                                               [(ngModel)]="user.cpf"
+                                               length="14" #cpfInput="ngModel">
+
+                                        <div *ngIf="cpfInput.dirty && cpfInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="cpfInput.errors?.pattern" >
+                                                Preencha todos os números
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="form-control-label">Login</label>
+                                        <input type="text" class="form-control" name="login" #loginInput="ngModel"
+                                               [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+
+                                        <div *ngIf="loginInput.dirty && loginInput.invalid">
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.required">
+                                                This field is required.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.maxlength">
+                                                This field cannot be longer than 50 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.pattern">
+                                                This field can only contain letters, digits and e-mail addresses.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label class="form-control-label">Email</label>
+                                        <input type="email" class="form-control" name="email" #emailInput="ngModel"
+                                               [(ngModel)]="user.email" minlength="5" required maxlength="254" placeholder="exemplo@exemplo.com.br">
+
+                                        <div *ngIf="emailInput.dirty && emailInput.invalid">
+                                            <small class="form-text text-danger" *ngIf="emailInput.errors.required">
+                                                This field is required.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="emailInput.errors.maxlength">
+                                                This field cannot be longer than 100 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="emailInput.errors.minlength">
+                                                This field is required to be at least 5 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="emailInput.errors.email">
+                                                Your email is invalid.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Novos campos-->
+                                <div class="row">
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label">Sexo</label>
+                                        <select class="form-control" name="sexo" id="sexo" [(ngModel)]="user.sexo" required>
+                                            <option value="M">M</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+
+                                    <!--Tel Residencial-->
+                                    <!--<div class="col-md-2">-->
+                                    <div class="form-group-prepend col-sm-3">
+                                        <label class="form-control-label">Telefone</label>
+                                        <input type="text" class="form-control"
+                                        [textMask]="maskFoneFix"
+                                        placeholder="(61) 5555-5555"
+                                        type="text" class="form-control"
+                                        name="telFixo" id="telFixo"
+                                        pattern="^\([1-9]{2}\) [0-9]{4}-[0-9]{4}$"
+                                        [(ngModel)]="user.telFixo"  minlength="14" #foneFixInput="ngModel" required/>
+
+                                        <div *ngIf="foneFixInput.dirty && foneFixInput.invalid">
+                                            <small class="form-text text-danger"
+                                            *ngIf="foneFixInput.errors?.pattern" >
+                                            Preencha todos os campos, inclusive o seu DDD
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="form-group col-sm-3">-->
+                                    <div class="form-group-prepend col-sm-3">
+                                        <label class="form-control-label">Celular</label>
+                                        <input type="text" class="form-control"
+                                               [textMask]="maskFoneTel"
+                                               placeholder="(61) 55555-5555"
+                                               type="text" class="form-control"
+                                               name="telCelular" id="telCelular"
+                                               pattern="^\([1-9]{2}\) [0-9]{5}-[0-9]{4}$"
+                                               [(ngModel)]="user.telCelular"  minlength="14" #foneCelInput="ngModel" required/>
+
+                                        <div *ngIf="foneCelInput.dirty && foneCelInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="foneCelInput.errors?.pattern" >
+                                                Preencha todos os campos, inclusive o seu DDD e o 9 antes do número
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 form-group">
+                                        <label class="form-control-label" name="field_data">Data de Nascimento</label>
+                                        <input id="field_data" type="date" placeholder="dd/mm/yyyy" class="form-control"
+                                               name="data" [(ngModel)]="user.dtNascimento"
+                                               dateFormat="dd/mm/yyyy" required/>
+                                    </div>
+
+                                </div>
+
+                                <!--<div class="form-group-prepend col-sm-4">-->
+                                <!--<label class="form-control-label" for="cep">CEP</label>-->
+                                <!--<div class="row col-md-12">-->
+                                <!--<input type="text" class="form-control col-sm-9" name="cep" id="cep"-->
+                                <!--[textMask]="maskCep"-->
+                                <!--placeholder="01234-567"-->
+                                <!--required-->
+                                <!--[(ngModel)]="user.cep"  minlength="7" #areaAtuacaoInput="ngModel"/>-->
+
+                                <!--<div *ngIf="areaAtuacaoInput.dirty && areaAtuacaoInput.invalid">-->
+                                <!--<small class="form-text text-danger"-->
+                                <!--*ngIf="areaAtuacaoInput.errors?.pattern" >-->
+                                <!--Preencha todos os números-->
+                                <!--</small>-->
+                                <!--</div>-->
+
+                                <!--<small class="form-text text-danger" *ngIf="validador">-->
+                                <!--CEP Inválido-->
+                                <!--</small>-->
+
+                                <!--<div class="input-group-append col-sm-2">-->
+                                <!--<label class="form-control-label"></label>-->
+                                <!--<button type="button" class="btn btn-lightning" (click)="buscarCep()" >-->
+                                <!--&lt;!&ndash;<span>Buscar</span>&ndash;&gt;-->
+                                <!--<i class="fas fa-search"></i>-->
+                                <!--</button>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Endereço</b>
+                            </div>
+                            <div class="card-body">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="form-group col-sm-4">
+                                        <label class="form-control-label" for="cep">CEP</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control col-sm-9" name="cep" id="cep"
+                                                   [textMask]="maskCep"
+                                                   placeholder="01234-567"
+                                                   required
+                                                   [(ngModel)]="user.cep"  minlength="7" #areaAtuacaoInput="ngModel"/>
+
+                                            <div *ngIf="areaAtuacaoInput.dirty && areaAtuacaoInput.invalid">
+                                                <small class="form-text text-danger"
+                                                       *ngIf="areaAtuacaoInput.errors?.pattern" >
+                                                    Preencha todos os números
+                                                </small>
+                                            </div>
+
+                                            <small class="form-text text-danger" *ngIf="validador">
+                                                CEP Inválido
+                                            </small>
+
+                                            <div class="d-flex input-group-append col-sm-2">
+                                                <label class="form-control-label"></label>
+                                                <button type="button" class="btn btn-lightning" (click)="buscarCep()" >
+                                                    <!--<span>Buscar</span>-->
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="logradouro">Logradouro</label>
+                                        <input type="text" class="form-control" name="logradouro" id="logradouro" [(ngModel)]="user.logradouro" maxlength="255" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label" for="numero">Número</label>
+                                        <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="user.numero" maxlength="5" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="cidade">Cidade</label>
+                                        <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="user.cidade" maxlength="20" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="bairro">Bairro</label>
+                                        <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="user.bairro" maxlength="75" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label">UF</label>
+                                        <select class="form-control" name="uf" [(ngModel)]="user.uf" required>
+                                            <option *ngFor="let item of ufs" [value]="item">{{item}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="complemento">Complemento</label>
+                                        <input type="text" class="form-control" name="complemento" id="complemento" [(ngModel)]="user.complemento" maxlength="150" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span>Status</span>
+                                                <div class="check-box-scged">
+                                                    <input id="someSwitchOptionSuccess" type="checkbox" name="status"
+                                                           [disabled]="user.id === null"
+                                                           [(ngModel)]="user.activated"/>
+                                                    <label for="someSwitchOptionSuccess" class="label-success"></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile form-group mt-3">
+                    <label>Profiles</label>
+                    <select class="form-control" multiple name="authority" [(ngModel)]="user.authorities">
+                        <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
+                    </select>
+                </div>
+
+                <div class="card-footer float-right">
+                    <button type="button" class="btn btn-secondary btn-lightning" (click)="previousState()">
+                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                    </button>
+
+                    <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-lightning">
+                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.forquality.crud"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "crudUniversidade",
+        "packageName": "com.forquality.crud",
+        "packageFolder": "com/forquality/crud",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "postgresql",
+        "prodDatabaseType": "postgresql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": "eureka",
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "NTU3MzBiNjRhYmQ4MTc5NmU0NzliMTc1NTMwZjM4MjQ5OTY3YTM3NThhZmQ4OTAzZGVhOGUxM2ZlZTE5MGEzZDJlZTA2NmQ4MmE2NDhkN2E2MDM2NmEwNjJmNjgxMDQ2OGZhNDRiZTIyM2RkYzYwNGQ3NDY1ZjBlMjc0ZTI5Nzc=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": false
+    }
+}

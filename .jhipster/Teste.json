@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "marca_id",
+            "otherEntityName": "marca",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "criado_as",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "end_at",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20191118123333",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "teste",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

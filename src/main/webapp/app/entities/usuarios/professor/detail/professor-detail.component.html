@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="professor">
+            <h2>
+                <span>Professor</span> [<b>{{professor.login}}</b>]
+            </h2>
+            <button type="submit"
+                    routerLink="../../"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+        </div>
+    </div>
+</div>

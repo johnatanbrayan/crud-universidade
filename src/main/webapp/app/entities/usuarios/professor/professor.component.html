@@ -1,0 +1,90 @@
+<div class="card shadow-lg">
+    <div class="card-header">
+        <div>
+            <b>Professor</b>
+            <button class="btn btn-primary float-right jh-create-entity btn_status"
+                    [routerLink]="['./new']">
+                <fa-icon [icon]="'plus'"></fa-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <jhi-alert></jhi-alert>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <br/>
+
+        <div class="table-responsive" *ngIf="professores">
+            <table class="table table-striped">
+                <thead>
+                    <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                        <th>Login</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngIf ="professores">
+                    <tr *ngFor="let professor of professores; trackBy: trackIdentity">
+                        <td>{{professor.login}}</td>
+                        <td>{{professor.email}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-circle" *ngIf="!professor.activated"><i class="fas fa-minus-circle"></i></button>
+                            <button class="btn btn-success btn-circle" *ngIf="professor.activated"
+                                    [disabled]="currentAccount.login === professor.login">
+                                <i class="fas fa-check-circle"></i>
+                            </button>
+                        </td>
+
+                        <td class="text-right">
+                            <div class="btn-group flex-btn-group-container">
+                                <button type="submit"
+                                        [routerLink]="['./', professor.login, 'edit']"
+                                        class="btn btn-info btn-sm"
+                                        title="Visualizar">
+                                    <fa-icon [icon]="'eye'"></fa-icon>
+                                </button>
+
+                                <button type="submit" (click)="deleteProfessor(professor)"
+                                        class="btn btn-danger btn-sm" [disabled]="currentAccount.login === professor.login"
+                                        title="Delete">
+                                    <fa-icon [icon]="'trash-alt'"></fa-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="professores">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems"
+                                [itemsPerPage]="itemsPerPage">
+                </jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"
+                                [pageSize]="itemsPerPage" [maxSize]="5"
+                                [rotate]="true" [boundaryLinks]="true"
+                                (pageChange)="loadPage(page)">
+                </ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="row justify-content-center text-right">
+            <div class="col-md-12">
+                <button type="submit" routerLink="../tela-inicial"
+                        class="btn-amarelo-clean btn-warning-clean btn-sm-clean">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;&nbsp;Voltar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

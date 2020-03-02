@@ -1,0 +1,237 @@
+<div class="card shadow-lg">
+    <div class="card-header">
+        <h2 id="myUserLabel">
+            Professor
+        </h2>
+    </div>
+    <div class="card-body">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Dados Pessoais</b>
+                            </div>
+                            <div class="card-body">
+                                <jhi-alert-error></jhi-alert-error>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label class="form-control-label">Nome Completo</label>
+                                        <input type="text" class="form-control" name="firstName" #nomeInput="ngModel"
+                                               [(ngModel)]="professor.nome" maxlength="50" required>
+
+                                        <div *ngIf="nomeInput.dirty && nomeInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="nomeInput.errors.maxlength">
+                                                This field cannot be longer than 50 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
+                                        <input type="email" class="form-control" name="email" #emailInput="ngModel"
+                                               [(ngModel)]="professor.email" minlength="5" required maxlength="100" email>
+
+                                        <div *ngIf="emailInput.dirty && emailInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+
+                                            <small class="form-text text-danger"
+                                                   *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                                   translateValues="{max: 100}">
+                                                This field cannot be longer than 100 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger"
+                                                   *ngIf="emailInput.errors.minlength" jhiTranslate="entity.validation.minlength"
+                                                   translateValues="{min: 5}">
+                                                This field is required to be at least 5 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger"
+                                                   *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                                                Your email is invalid.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <label class="form-control-label">Login</label>
+                                        <input type="text" class="form-control" name="login" #loginInput="ngModel"
+                                               [(ngModel)]="professor.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+
+                                        <div *ngIf="loginInput.dirty && loginInput.invalid">
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.required">
+                                                This field is required.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.maxlength">
+                                                This field cannot be longer than 50 characters.
+                                            </small>
+
+                                            <small class="form-text text-danger" *ngIf="loginInput.errors.pattern">
+                                                This field can only contain letters, digits and e-mail addresses.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label">Sexo</label>
+                                        <select class="form-control" name="sexo" id="sexo" [(ngModel)]="professor.sexo" required>
+                                            <option value="M">M</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-3">
+                                        <label class="form-control-label">Celular</label>
+                                        <input type="text" class="form-control"
+                                               [textMask]="maskFoneTel"
+                                               placeholder="(61) 55555-5555"
+                                               name="telCelular" id="telCelular"
+                                               pattern="^\([1-9]{2}\) [0-9]{5}-[0-9]{4}$"
+                                               [(ngModel)]="professor.telCelular"  minlength="14" #foneCelInput="ngModel" required/>
+
+                                        <div *ngIf="foneCelInput.dirty && foneCelInput.invalid">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="foneCelInput.errors?.pattern" >
+                                                Preencha todos os campos, inclusive o seu DDD e o 9 antes do número
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 form-group">
+                                        <label class="form-control-label" name="field_data">Data de Nascimento</label>
+                                        <input id="field_data" type="date" placeholder="dd/mm/yyyy" class="form-control"
+                                               name="data" [(ngModel)]="professor.dtNascimento"
+                                               dateFormat="dd/mm/yyyy" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <b>Endereço</b>
+                            </div>
+                            <div class="card-body">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="form-group col-sm-4">
+                                        <label class="form-control-label" for="cep">CEP</label>
+                                        <div class="row">
+                                            <input type="text" class="form-control col-sm-9" name="cep" id="cep"
+                                                   [textMask]="maskCep"
+                                                   placeholder="01234-567"
+                                                   required
+                                                   [(ngModel)]="professor.cep"  minlength="7" #areaAtuacaoInput="ngModel"/>
+
+                                            <div class="d-flex input-group-append col-sm-2">
+                                                <label class="form-control-label"></label>
+                                                <button type="button" class="btn btn-lightning" (click)="buscarCep()" >
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+
+                                            <div *ngIf="areaAtuacaoInput.dirty && areaAtuacaoInput.invalid">
+                                                <small class="form-text text-danger"
+                                                       *ngIf="areaAtuacaoInput.errors?.pattern" >
+                                                    Preencha todos os números
+                                                </small>
+                                            </div>
+
+                                            <small class="form-text text-danger" *ngIf="validador">
+                                                CEP Inválido
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="logradouro">Logradouro</label>
+                                        <input type="text" class="form-control" name="logradouro" id="logradouro" [(ngModel)]="professor.logradouro" maxlength="255" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label" for="numero">Número</label>
+                                        <input type="text" class="form-control" name="numero" id="numero" [(ngModel)]="professor.numero" maxlength="5" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="cidade">Cidade</label>
+                                        <input type="text" class="form-control" name="cidade" id="cidade" [(ngModel)]="professor.cidade" maxlength="20" required>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="bairro">Bairro</label>
+                                        <input type="text" class="form-control" name="bairro" id="bairro" [(ngModel)]="professor.bairro" maxlength="75" required>
+                                    </div>
+
+
+                                    <div class="form-group col-sm-2">
+                                        <label class="form-control-label">UF</label>
+                                        <select class="form-control" name="uf" [(ngModel)]="professor.uf" required>
+                                            <option *ngFor="let item of ufs" [value]="item">{{item}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-sm-5">
+                                        <label class="form-control-label" for="complemento">Complemento</label>
+                                        <input type="text" class="form-control" name="complemento" id="complemento" [(ngModel)]="professor.complemento" maxlength="150" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span>Status</span>
+                                                <div class="check-box-scged">
+                                                    <input id="someSwitchOptionSuccess" type="checkbox" name="status"
+                                                           [disabled]="professor.id === null"
+                                                           [(ngModel)]="professor.activated"/>
+                                                    <label for="someSwitchOptionSuccess" class="label-success"></label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile form-group mt-3">
+                    <label>Profiles</label>
+                    <select class="form-control" multiple name="authority" [(ngModel)]="professor.authorities">
+                        <option *ngFor="let authority of authorities" [value]="authority">{{authority}}</option>
+                    </select>
+                </div>
+
+                <div class="card-footer float-right">
+                    <button type="button" class="btn btn-secondary btn-lightning" (click)="previousState()">
+                        <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                    </button>
+
+                    <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary btn-lightning">
+                        <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
