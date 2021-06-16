@@ -29,6 +29,13 @@
     "@angular-devkit/core" "7.3.1"
     rxjs "6.3.3"
 
+"@angular/animations@^8.2.14":
+  version "8.2.14"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.14.tgz#76736b21e56165e6ca4925fb69605bdcc56aba7d"
+  integrity sha512-3Vc9TnNpKdtvKIXcWDFINSsnwgEMiDmLzjceWg1iYKwpeZGQahUXPoesLwQazBMmxJzQiA4HOMj0TTXKZ+Jzkg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular/cli@7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-7.3.1.tgz#a18acdec84deb03a1fae79cae415bbc8f9c87ffa"
@@ -926,6 +933,13 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+angular-animations@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/angular-animations/-/angular-animations-0.0.10.tgz#88d1bd59430e0636181800527fbf952d4203fbc6"
+  integrity sha512-UKKWRZDDXl3m+bcS1PfW5xZ2WoyM9ixfdLS7OG9lDrWm5KkIYEIrZvC+r5nfU3C5ovltHId5e2BlwYqL18kxOA==
+  dependencies:
+    tslib "^1.9.0"
 
 angular-router-loader@0.8.5:
   version "0.8.5"
@@ -7331,6 +7345,11 @@ ng2-currency-mask@^5.3.1:
   resolved "https://registry.yarnpkg.com/ng2-currency-mask/-/ng2-currency-mask-5.3.1.tgz#d73e27bf60ea423dfc0040106c8ea17316d07aab"
   integrity sha1-1z4nv2DqQj38AEAQbI6hcxbQeqs=
 
+ngx-bootstrap@^5.3.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-5.6.2.tgz#e648f826d303c29255c16772676efd30695740d1"
+  integrity sha512-6YHXtdXkGH3w0NQoaUgNYAcrj064Lv5RTO284ha/hvpNTrh55yQz2cVh0VvwBk3MjyY2tdmLH4SuCJDszYdYiw==
+
 ngx-cookie@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ngx-cookie/-/ngx-cookie-2.0.1.tgz#031d8938bf9026954356b3b3ae668e2e1964e584"
@@ -8631,9 +8650,9 @@ postcss-value-parser@^3.0.0, postcss-value-parser@^3.3.0, postcss-value-parser@^
   integrity sha512-pISE66AbVkp4fDQ7VHBwRNXzAAKJjw4Vw7nWI/+Q3vuly7SNfgYXvm6i5IgFylHGK5sP/xHAbB7N49OS4gWNyQ==
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.18"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.18.tgz#4b9cda95ae6c069c67a4d933029eddd4838ac233"
-  integrity sha512-/7g1QXXgegpF+9GJj4iN7ChGF40sYuGYJ8WZu8DZWnmhQ/G36hfdk3q9LBJmoK+lZ+yzZ5KYpOoxq7LF1BxE8g==
+  version "7.0.36"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
