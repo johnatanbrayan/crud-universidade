@@ -29,6 +29,13 @@
     "@angular-devkit/core" "7.3.1"
     rxjs "6.3.3"
 
+"@angular/animations@^8.2.14":
+  version "8.2.14"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.14.tgz#76736b21e56165e6ca4925fb69605bdcc56aba7d"
+  integrity sha512-3Vc9TnNpKdtvKIXcWDFINSsnwgEMiDmLzjceWg1iYKwpeZGQahUXPoesLwQazBMmxJzQiA4HOMj0TTXKZ+Jzkg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular/cli@7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-7.3.1.tgz#a18acdec84deb03a1fae79cae415bbc8f9c87ffa"
@@ -926,6 +933,13 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+angular-animations@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/angular-animations/-/angular-animations-0.0.10.tgz#88d1bd59430e0636181800527fbf952d4203fbc6"
+  integrity sha512-UKKWRZDDXl3m+bcS1PfW5xZ2WoyM9ixfdLS7OG9lDrWm5KkIYEIrZvC+r5nfU3C5ovltHId5e2BlwYqL18kxOA==
+  dependencies:
+    tslib "^1.9.0"
 
 angular-router-loader@0.8.5:
   version "0.8.5"
@@ -7208,10 +7222,10 @@ moment-locales-webpack-plugin@1.0.7:
   dependencies:
     lodash.difference "^4.5.0"
 
-moment@2.24.0, moment@^2.10.2, moment@^2.22.1:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+moment@2.29.4, moment@^2.10.2, moment@^2.22.1:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -7330,6 +7344,11 @@ ng2-currency-mask@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/ng2-currency-mask/-/ng2-currency-mask-5.3.1.tgz#d73e27bf60ea423dfc0040106c8ea17316d07aab"
   integrity sha1-1z4nv2DqQj38AEAQbI6hcxbQeqs=
+
+ngx-bootstrap@^5.3.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-5.6.2.tgz#e648f826d303c29255c16772676efd30695740d1"
+  integrity sha512-6YHXtdXkGH3w0NQoaUgNYAcrj064Lv5RTO284ha/hvpNTrh55yQz2cVh0VvwBk3MjyY2tdmLH4SuCJDszYdYiw==
 
 ngx-cookie@2.0.1:
   version "2.0.1"
